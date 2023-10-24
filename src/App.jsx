@@ -2,6 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Dashboard, dashboardLoader } from "./pages/Dashboard";
 import { Error } from "./pages/Error";
 
+// Library
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 // Layout
 import { Main, mainLoader } from "./layouts/Main";
 
@@ -32,6 +38,7 @@ const router = createBrowserRouter([
 function App() {
   return <div className="App">
     <RouterProvider router={router} />
+    <ToastContainer />
   </div>;
 }
 
