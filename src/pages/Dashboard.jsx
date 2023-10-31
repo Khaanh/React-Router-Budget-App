@@ -1,7 +1,7 @@
 // rrd imports
 import { useLoaderData } from "react-router-dom";
 // helpers
-import { createBudget, fetchData } from "../helpers";
+import { createBudget, fetchData, waitFunc } from "../helpers";
 // components
 import { Intro } from "../components/Intro";
 import { AddBudgetForm } from "../components/AddBudgetForm";
@@ -16,6 +16,8 @@ export const dashboardLoader = () => {
 }
 
 export async function dashboardAction({ request }) {
+
+  await waitFunc();
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
 
@@ -34,7 +36,6 @@ export async function dashboardAction({ request }) {
         name: values.newBudget,
         amount: values.newBudgetAmount
       })
-      throw new Error('You failed');
       return toast.success('Budget created!')
     } catch (e) {
       throw new Error('There was a problem creating your budget.');
