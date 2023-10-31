@@ -23,6 +23,7 @@ export const Intro = () => {
             aria-label='Your Name'
             autoComplete="given-name"
             required />
+          <input type="hidden" name="_action" value="newUser" />
           <button type="submit" className="btn btn--dark">
             <span>Create Account</span>
             <UserPlusIcon width={20} />
