@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Dashboard, dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import { Error } from "./pages/Error";
+import { budgetAction, budgetLoader, BudgetPage } from "./pages/BudgetPage";
 // Library
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,10 +26,18 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
+        path: "budget/:id",
+        element: <BudgetPage />,
+        loader: budgetLoader,
+        action: budgetAction,
+        errorElement: <Error />,
+      },
+      {
         path: 'expenses',
         element: <ExpensesPage />,
         loader: expensesdLoader,
         action: expensesAction,
+        errorElement: <Error />,
       },
       {
         path: 'logout',
