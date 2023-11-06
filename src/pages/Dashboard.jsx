@@ -1,7 +1,7 @@
 // rrd imports
 import { Link, useLoaderData } from "react-router-dom";
 // helpers
-import { createBudget, createExpense, fetchData, waitFunc } from "../helpers";
+import { createBudget, createExpense, deleteItem, fetchData, waitFunc } from "../helpers";
 // components
 import { Intro } from "../components/Intro";
 import { AddBudgetForm } from "../components/AddBudgetForm";
@@ -47,6 +47,18 @@ export async function dashboardAction({ request }) {
     }
   }
 
+  if (_action === 'deleteExpense') {
+    try {
+      deleteItem({
+        key: "expenses",
+        id: values.expensesId,
+      })
+      return toast.success(`Expense deleted! `)
+    } catch (e) {
+      throw new Error('There was a problem deleting your expense.');
+    }
+  }
+
   if (_action === 'createBudget') {
     try {
       createBudget({
@@ -65,7 +77,7 @@ export const Dashboard = () => {
 
   return (
     <div>
-      {userName ?
+      {userName ? (
         <div className="dashboard">
           <h1>Welcome back, <span className="accent">{userName}</span></h1>
           <div className="grid-sm">
@@ -106,11 +118,11 @@ export const Dashboard = () => {
                     <p>Create a budget to get started! </p>
                     <AddBudgetForm />
                   </div>
-                )
-            }
+                )}
           </div>
         </div>
-        : <Intro />}
+      )
+        : (<Intro />)}
     </div>
   )
 }

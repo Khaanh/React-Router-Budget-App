@@ -6,22 +6,17 @@ export const Table = ({ expenses }) => {
       <table>
         <thead>
           <tr>
-            {
-              ["Name", "Amount", "Date"].map((i, index) => (
-                <th key={index}>{i}</th>
-              ))
-            }
+            {["Name", "Amount", "Date", "Dudget", ''].map((i, index) => (
+              <th key={index}>{i}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {
-            expenses.map((expense) => (
-              <tr key={expense.id}>
-                {expense.name}
-                <ExpenseItem expense={expense} />
-              </tr>
-            ))
-          }
+          {expenses.map((expense) => (
+            <tr key={expense.id}>
+              <ExpenseItem expense={expense} />
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
